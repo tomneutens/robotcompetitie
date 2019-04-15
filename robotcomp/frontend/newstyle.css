@@ -1,0 +1,148 @@
+body {
+  color: white;
+  z-index: -2;
+  background: black url('background_dark.png') no-repeat center center;
+  position: relative; 
+  height: 100%;
+}
+
+#container {
+  /* container should take up the viewport */
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  
+  overflow: hidden;
+  /* background-color: white; */
+  
+}
+
+@media (min-width: 800px) and (max-width: 1400px) {
+    #ranking_list{
+        column-count: 2;
+        column-gap: 2.5em;
+        -moz-column-count: 2;
+        -moz-column-gap: 2.5em;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 2.5em;
+        -webkit-column-rule-style: solid; /* Chrome, Safari, Opera */
+        -moz-column-rule-style: solid; /* Firefox */
+        column-rule-style: solid;
+    }
+}
+@media (min-width: 1400px) and (max-width: 2500px) {
+    #ranking_list{
+        column-count: 3;
+        column-gap: 2.5em;
+        -moz-column-count: 3;
+        -moz-column-gap: 2.5em;
+        -webkit-column-count: 3;
+        -webkit-column-gap: 2.5em;
+        -webkit-column-rule-style: solid; /* Chrome, Safari, Opera */
+        -moz-column-rule-style: solid; /* Firefox */
+        column-rule-style: solid;
+    }
+}
+
+
+#ranking_list li.player{
+    height: 50px;
+    width: 100%;
+    margin: 5px;
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+}
+
+#ranking_list li{
+    list-style-type: none;
+    white-space: nowrap;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+#ranking_list .player_header{
+    height: 50px;
+    font-size: 30px;
+    
+}
+
+#ranking_list li div{
+    padding: 0 5px;
+}
+
+#ranking_list .player_header .avatar{
+    display: inline-block;
+    width: 50px;
+    float: left;
+}
+
+#ranking_list .player_header .name{
+    /*max-width: 50%;*/
+    min-width: 10px;
+    float: left;
+    margin-left: 120px;
+}
+
+#ranking_list .player_header .team{
+    float: left;
+}
+
+#ranking_list .player_header .score{
+    float:right;
+}
+
+
+#ranking_list li.player .avatar img{
+    max-height: 50px;
+    max-width: 50px;
+    overflow: hidden;
+}
+
+#ranking_list li.player .avatar{
+    max-height: 50px;
+    max-width: 50px;
+    float: left;
+}
+
+#ranking_list li.player .name{
+    font-size: 30px;
+    vertical-align: middle;
+    float: left;
+    overflow: hidden;
+    /*max-width: 50%;*/
+    min-width: 10px;
+    margin: 0 auto;
+
+}
+
+#ranking_list li.player .team {
+    font-size: 25px;
+    vertical-align: middle;
+    float: left;
+}
+
+#ranking_list li.player .score{
+    font-size: 30px;
+    vertical-align: middle;
+    float: right;
+    padding-right: 30px;
+}
+
+#ranking_list li.player div{
+    display: inline-block;
+    height: 50px;
+    padding: 0 5px;
+}
+
+#site_advertisement{
+    bottom: 0;
+    position: absolute;
+}
+
+
+

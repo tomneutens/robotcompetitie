@@ -1,0 +1,649 @@
+/*
+
+IEEE-blauw: #10418c
+UGent-geel: #fab91c
+
+*/
+
+body {
+  color: black;
+}
+
+.timerright{
+  position: fixed;
+  top: 85%;
+  width: 300px;
+  left: 1540 !important;
+}
+
+#container {
+  /* container should take up the viewport */
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  overflow: hidden;
+  /* background-color: white; */
+  z-index: -2;
+  /*background-color: rgb(114,160, 212);*/
+  /*background: black url('background_dark.png') no-repeat center center;*/
+}
+
+.pause #pause {
+  background: url("banner_race.png") no-repeat center center;
+  background-color: #72a0d4;
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* selection page arrangement */
+
+.selection #tables {
+  position: absolute;
+  width: 100.0%;
+  top: 0%;
+  bottom: 0%;
+}
+
+
+.selection .ranking_container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.selection.left .ranking_container {
+  left: 1280;
+  border-left: 1px solid white;
+}
+
+.selection.right .ranking_container {
+  right: 1280;
+  border-right: 1px solid white;
+}
+
+.selection.left .ranking {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15%;
+    right: 5%;
+}
+
+.selection.right .ranking {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15%;
+    right: 5%;
+}
+
+
+
+.selection #logo {
+  position: absolute;
+  top: 90%;
+  bottom: 5%;
+}
+
+.selection #timer {
+  position: absolute;
+  top: 85%;
+  bottom: 0%;
+  left: 0%;
+  /*width: 100%;*/
+  right: 1280;
+}
+
+
+.selection #logo {
+  left: 33.3%;
+  width: 33.3%;
+}
+
+
+.selection div.table {
+  height: 100%;
+  position: absolute;
+}
+
+/*.selection #table1 {
+  left: 0;
+  width: 33.3%;
+}
+
+.selection #table2 {
+  left: 33.3%;
+  width: 33.3%;
+}
+
+.selection #table3 {
+  left: 66.6%;
+  width: 33.3%;
+}*/
+
+.selection2 #table1 {
+  left: 0;
+  width: 1280;
+}
+
+.selection2 #table2 {
+  right: 0;
+  width: 1280;
+}
+
+
+.selection4 #table1 {
+  left: 0;
+  width: 640;
+}
+
+.selection4 #table2 {
+  left: 640;
+  width: 640;
+  /*border-right: 1px solid #888;*/
+}
+
+.selection4 #table3 {
+  right: 640;
+  width: 640;
+  /*border-left: 1px solid #888;*/
+}
+
+.selection4 #table4 {
+  right: 0;
+  width: 640;
+}
+
+
+/* image brol */
+.selection #guy1 {
+  background: url('logo-team1.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-top: 30px;
+  /*margin-top: -40px;*/
+
+}
+
+.selection #guy2 {
+  background: url('logo-team2.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-top: 30px;
+  /*margin-top: -40px;*/
+}
+
+.selection #guy3 {
+  background: url('logo-team3.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-top: 30px;
+  /*margin-top: -40px;*/
+}
+
+.selection #guy4 {
+  background: url('logo-team4.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-top: 30px;
+  /*margin-top: -40px;*/
+}
+
+/* final page arrangement */
+
+
+.final #timer, .final  #tables {
+  position: absolute;
+}
+
+.final #tables {
+  top: 15%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.final #timer {
+  top: 0%;
+  bottom: 85%;
+  left: 0%;
+  width: 100%;
+}
+
+#logo {
+  background-image: url("logo-bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+
+
+
+/* style */
+body {
+ font-family: "Verdana", sans-serif;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+
+/* headers */
+h1 {
+  font-size: 2.5em;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 0.5em;
+}
+/* headers */
+.final h1 {
+  font-size: 2.5em;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 0.5em;
+  display: none;
+}
+
+/* TABLES */
+
+.table {
+  padding: 0em;
+  padding-top: 1em;
+}
+
+.final .table {
+  position: relative;
+}
+
+.table li.player .name {
+  font-size: 2.5em;
+  white-space: nowrap;
+  line-height: 160%;
+  width: 70%;
+}
+
+.table li.player0 .name {
+  margin-right: 25%;
+  margin-left: 5%;
+}
+
+.table li.player1 .name {
+  margin-left: 25%;
+  margin-right: 5%;
+}
+
+.table li.player .team {
+  font-size: 2.8em;
+  text-align: center;
+  width: 21%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  margin: 5px;
+}
+
+.final .table li.player .team {
+  width: 10%;
+  margin-top: 60px;
+}
+.final .table li.player0 .team {
+  float: right;
+  margin-right: 10px;
+}
+.final .table li.player1 .team {
+  float: left;
+  margin-left: 10px;
+}
+
+.final .table li.player0 .name {
+  margin-right: 40%;
+  margin-left: 5%;
+  line-height: 170px;
+  width: 55%;
+}
+
+.final .table li.player1 .name {
+  margin-left: 40%;
+  margin-right: 5%;
+  line-height: 170px;
+  width: 55%;
+}
+
+
+
+.table li.player0 .team {
+  float: right;
+  margin-right: 0;
+}
+
+.table li.player1 .team {
+  float: left;
+  margin-left: 0;
+}
+
+.final .table li.player .name {
+   font-size: 4em;
+   padding-top: 0 !important; /* EVIL HACK to prevent fontfit from pushing the text down on the final table page. */
+}
+
+.table li.player .avatar {
+  position: relative;
+}
+
+.table li.player0 .avatar .avatar-overlay {
+  right: 0;
+}
+
+.table li.player1 .avatar .avatar-overlay {
+  left: 0;
+}
+
+.final .table li.player0 .avatar img{
+  float:right;
+}
+
+.final .table li.player1 .avatar img{
+  float:left;
+}
+
+.table li.player .avatar .avatar-overlay {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  top: 0;
+}
+
+.table li.player .avatar img {
+  width: 250px;
+  height: 250px;
+}
+
+.table .highlight {
+  /* can't set position: relative on ul.matches because it fucks up quicksand, so positioning this is a bitch */
+  position: absolute;
+  top: 450px;
+  height: 350px;
+  width: 100%;
+  z-index: -1;
+
+  background-color: rgba(255, 0, 0, 0.3); /*#a00;*/ /* #600; */ /* white; */
+  border: 1px solid white;
+  border-width: 1px 0px;
+}
+
+.final .table .highlight {
+  top: 240px;
+  height: 215px;
+}
+
+.table li.match {
+  width: 100%;
+  height: 330px;
+  padding: 5px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.table li.match.next {
+  height: 80px;
+}
+
+.selection .table li.match.next .avatar img {
+  display: none;
+}
+
+.final .table li.match, .final .table li.match.current {
+  height: 210px;
+}
+
+.table li.match.current {
+  padding-top: 20px;
+}
+
+.table li.match.current li.player .name {
+  font-size: 2.5em;
+  /* font-weight: bold; */
+}
+
+.final .table li.match.current li.player .name {
+  font-size: 4em;
+}
+
+
+.table ul.players {
+}
+
+.table li.player {
+  float: left;
+  width: 48%;
+}
+
+.table li.player0 {
+  text-align: right;
+  padding-right: 2%;
+}
+
+.table li.player1 {
+  text-align: left;
+  padding-left: 2%;
+}
+
+.table li.player1 .team span {
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.table li.player0 .team span {
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.table li.player.winner, .table li.player.draw {
+  font-weight: bold;
+}
+
+.table li.player.loser, .table li.player.fail {
+   color: #666;
+  /*text-decoration: line-through;*/
+
+}
+
+/* RANKING */
+
+.ranking {
+  padding-top: 1em;
+}
+
+.ranking ol {
+  padding: 0;
+  margin: 0;
+  font-size: 2.2em;
+}
+
+.ranking li.player {
+  position: relative;
+  width: 100%;
+}
+
+.ranking li.player .name, .ranking li.player .team {
+  display: inline;
+}
+
+.ranking li.player .score {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+
+.ranking h1 {
+  text-align: center;
+}
+
+
+/*
+.selection .ranking ol {
+  margin-top: 10px;
+  margin-left: 80px;
+  margin-right: 10px;
+  width: 500px;
+  font-size: 2.2em;
+}*/
+
+.selection .ranking .avatar {
+  display: none;
+}
+
+.selection .ranking li.player {
+  line-height: 1.25em;
+}
+
+
+.selection .ranking li.player .name {
+
+}
+
+.selection .ranking li:nth-child(even).player .name {
+  color: #bbb;
+}
+
+.selection .ranking li.player .team {
+  font-size: .8em;
+  padding-left: .5em;
+  color: #c00;
+  font-weight: bold;
+}
+
+.selection .ranking li.player .score {
+  color: #c00;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.final .ranking {
+  padding: 0;
+}
+
+
+.final .ranking ol {
+  margin: 0;
+  width: 100%;
+  font-size: 5em;
+}
+
+.final .ranking li.player {
+  width: 640px;
+  height: 1080px;
+  float: left;
+  text-align: center;
+}
+
+.final .ranking li.player .name {
+  font-size: 1em;
+}
+
+.final .ranking li.player .team {
+  font-size: .8em;
+  padding-left: .5em;
+  color: #c00;
+}
+
+.final .ranking li.player .score {
+  display: none;
+}
+
+
+.final .ranking .avatar img {
+  width: 400px;
+  height: 400px;
+  margin-top: 250px;
+  margin-bottom: 50px;
+}
+
+
+
+
+
+/* TIMER */
+
+#timer {
+  padding-top: 0px;
+}
+
+#timer .remaining {
+  font-size: 8em;
+  text-align: center;
+  line-height: 100%;
+}
+
+#timer .remaining.end-is-nigh {
+  color: #c00;
+}
+
+
+/* winner loser avatar overlays */
+
+.table li.match.last li.player0.winner .avatar .avatar-overlay {
+}
+
+.table li.match.last li.player1.winner .avatar .avatar-overlay {
+}
+
+.table li.match.last li.player.loser .avatar .avatar-overlay {
+}
+
+/*.table li.match.last li.player.winner .avatar img {
+  box-shadow: 0px 0px 60px #fff;
+}*/
+
+.table li.match.last li.player.loser .avatar img, .table li.match.last li.player.fail .avatar img {
+  -webkit-filter: blur(8px) brightness(50%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+}
+/*
+.table li.match.last li.player.draw .avatar img {
+}*/
+
+
+/*CSS added for 2016 competition, i don't know why my predecessors made it this way, it doesn't seem to work..*/
+
+/*CSS for the rankings view*/
+.final .ranking .ranking_list li.player{
+    height: 100px;
+    width: 100%;
+}
+
+.final .ranking .ranking_list li.player .avatar img{
+    max-height: 100px;
+    max-width: 100px;
+}
+
+.final .ranking .ranking_list li.player .name{
+    font-size: 25px;
+}
+
+#ranking_left{
+    width: 50%;
+    float:left;
+}
+#ranking_right{
+    width: 50%;
+    float: left;
+}

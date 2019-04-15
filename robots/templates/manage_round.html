@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>Manage current round</title>
+<style>
+div#round_info {
+    margin: 1em 0;
+}
+
+ul.tables {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+ul.tables ul {
+    float: left;
+    width: 24%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border: 1px solid #888;
+}
+
+span.robotname {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+ul.matches li {
+    border-bottom: 1px dashed #888;
+    padding-bottom: 1em;
+}
+
+div.match_status span.status {
+    font-weight: bold;
+}
+
+li.match.running div.match_players {
+    font-size: 1.5em;
+}
+
+li.match.finished div.match_players {
+    font-style: italic;
+}
+
+div.played_before {
+    font-size: .9em;
+    color: red;
+    font-weight: bold;
+}
+
+.teamnumber {
+ font-size: 1.6em;
+}
+</style>
+</head>
+<body>
+
+<div id="round_info">
+<h2>Round info</h2>
+{% if current_round %}
+Round: <b><a href="/admin/robots/round/{{ current_round.id }}/">{{ current_round.name }}</a></b><br>
+Status: <b>
+{% if current_round.created %}created{% endif %}
+{% if current_round.running %}running{% endif %}
+{% if current_round.finished %}finished{% endif %}
+</b>
+{% else %}
+No round is currently running. <a href="/admin/robots/round/">Please start a round by changing its status to 'running'.</a>
+{% endif %}
+</div>
+
+<div id="round_management">
+
+<ul>
+{% if current_round.matches_running or current_round.all_matches_finished %}
+<li>Can't start next matches now, there are matches running or there are no more planned matches to start.</li>
+{% else %}
+<li><a href="/start_next_matches/{{ current_round.id }}/">Start next matches</a></li>
+{% endif %}
+{% if current_round.created %}
+<li><a href="/start_round/{{ current_round.id }}/">Start round</a></li>
+{% endif %}
+{% if not current_round.has_matches %}
+<li><a href="/plan_round/{{ current_round.id }}/">Plan round</a></li>
+{% endif %}
+{% if current_round.running %}
+<li><a href="/finish_round/{{ current_round.id }}/">Finish round</a></li>
+{% endif %}
+</ul>
+
+</div>
+
+
+<div id="matches">
+    <h2>Matches</h2>
+    <ul class="tables">
+    {% for matches in tables_matches %}
+        <li><ul class="matches">
+        {% for match in matches %}
+            <li class="match {% if match.finished %}finished{% endif %} {% if match.running %}running{% endif %} {% if match.planned %}planned{% endif %}">
+            <div class="match_players">
+            <a href="/admin/robots/match/{{ match.id }}/">
+            <span class="robotname">{{ match.robot1.name }}</span> (<span class="teamnumber">{{ match.robot1.team_number }}</span>) vs.
+            <span class="robotname">{{ match.robot2.name }}</span> (<span class="teamnumber">{{ match.robot2.team_number }}</span>)
+            </a>
+            </div>
+
+            <div class="match_status">Status:
+            <span class="status">
+            {% if match.planned %}planned{% endif %}
+            {% if match.running %}running{% endif %}
+            {% if match.no_score %}finished, no score yet{% endif %}
+            {% if match.robot1won %}finished, {{ match.robot1.name }} ({{ match.robot1.team_number }}) won{% endif %}
+            {% if match.robot2won %}finished, {{ match.robot2.name }} ({{ match.robot2.team_number }}) won{% endif %}
+            {% if match.draw %}finished, draw{% endif %}
+            {% if match.fail %}finished, both robots failed to finish{% endif %}
+            </span>
+            </div>
+
+            {% if match.planned %}
+            <a href="/postpone_match/{{ match.id }}/">Postpone match</a>
+            {% endif %}
+
+            {% if match.running %}
+            <form method="POST" action="/finish_match/{{ match.id }}/">
+              <input type="radio" name="result" value="0" id="result0"><label for="result0">Return to planned</label><br>
+              <!--<input type="radio" name="result" value="2" id="result2"><label for="result2">No score yet</label><br>-->
+              <input type="radio" name="result" value="3" id="result3"><label for="result3">{{ match.robot1.name }} ({{ match.robot1.team_number}}) won and {{ match.robot2.name }} ({{ match.robot2.team_number}}) did not finish</label><br>
+              <input type="radio" name="result" value="4" id="result4"><label for="result4">{{ match.robot2.name }} ({{ match.robot2.team_number}}) won and {{ match.robot1.name }} ({{ match.robot1.team_number}}) did not finish</label><br>
+              <!--<input type="radio" name="result" value="5" id="result5"><label for="result5">Draw (both finished at the same time)</label><br>-->
+              <input type="radio" name="result" value="6" id="result6"><label for="result6">Fail (both failed to finish)</label><br>
+              <input type="radio" name="result" value="7" id="result3"><label for="result3">{{ match.robot1.name }} ({{ match.robot1.team_number}}) won and {{ match.robot2.name }} ({{ match.robot2.team_number}}) finished</label><br>
+              <input type="radio" name="result" value="8" id="result4"><label for="result4">{{ match.robot2.name }} ({{ match.robot2.team_number}}) won and {{ match.robot1.name }} ({{ match.robot1.team_number}}) finished</label><br>
+
+                <!--<input type="radio" name="result" value="0" id="result0"><label for="result0">Return to planned</label><br>
+                <input type="radio" name="result" value="2" id="result2"><label for="result2">No score yet</label><br>
+                <input type="radio" name="result" value="3" id="result3"><label for="result3">{{ match.robot1.name }} ({{ match.robot1.team_number}}) won</label><br>
+                <input type="radio" name="result" value="4" id="result4"><label for="result4">{{ match.robot2.name }} ({{ match.robot2.team_number}}) won</label><br>
+                <input type="radio" name="result" value="5" id="result5"><label for="result5">Draw (both finished at the same time)</label><br>
+                <input type="radio" name="result" value="6" id="result6"><label for="result6">Fail (both failed to finish)</label><br>-->
+                <!--
+                <select name="result">
+                    <option value="0">Return to planned</option>
+                    <option value="2" selected>No score yet</option>
+                    <option value="3">{{ match.robot1.name }} ({{ match.robot1.team_number}}) won</option>
+                    <option value="4">{{ match.robot2.name }} ({{ match.robot2.team_number}}) won</option>
+                    <option value="5">Draw</option>
+                </select>
+                -->
+                <input type="submit" value="Finish match">
+            </form>
+            {% endif %}
+
+            {% if match.has_been_played_before %}
+            <div class="played_before">Warning: these robots are playing against eachother multiple times. This is instance {{ match.duplicates.count }} of this match.</div>
+            {% endif %}
+            </li>
+        {% endfor %}
+        </ul></li>
+    {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>

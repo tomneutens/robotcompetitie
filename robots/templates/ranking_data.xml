@@ -1,0 +1,9 @@
+{% load staticfiles %}
+
+<update roundtype="{{ roundtype }}">
+  <ranking>
+    {% for entry in ranking_entries %}
+    <player name="{{ entry.name }}" teamnumber="{{ entry.teamnumber }}" score="{{ entry.score }}" avatar="{% static entry.avatar.url %}"/>
+    {% endfor %}
+  </ranking>
+</update>

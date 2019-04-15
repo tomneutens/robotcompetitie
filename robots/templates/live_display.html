@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="refresh" content="5"> <!-- refresh every 10 secs -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Robotcompetitie: wedstrijdinfo</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/frontend/bootstrap/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="/frontend/bootstrap/css/bootstrap-theme.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/frontend/style-public.css">
+
+  </head>
+  <body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/frontend/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="/frontend/bootstrap/css/bootstrap.min.js"></script>
+    <!-- jQuery cookie plugin -->
+    <script src="/frontend/jquery.cookie.min.js"></script>
+
+    <!-- from http://stackoverflow.com/questions/10523433/how-do-i-keep-the-current-tab-active-with-twitter-bootstrap-after-a-page-reload
+    this ensures that the currently selected tab is reloaded after a page refresh. The current tab is stored as a cookie. -->
+
+
+    <h1>Robotcompetitie: wedstrijdinfo</h1>
+
+
+    <section class="tab-content">
+
+
+        <article class="col-sm-4 matches" id="recent">
+            <ul>
+                <li><h3>Voorbije wedstrijden</h3></li>
+                {% for table in tables %}
+                  <li>
+                    <ul>
+                      {% for entry in table %}
+                          {% if entry.type == "last" %}
+                              {% if entry.match %}
+                                  {% include "_match.html" %}
+                              {% endif %}
+                          {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% empty %}
+                    <li class="pause">Pauze</li>
+                {% endfor %}
+            </ul>
+        </article>
+
+        <article class="col-sm-4 matches" id="current">
+            <ul>
+              <li><h3>Huidige wedstrijden</h3></li>
+                {% for table in tables %}
+                  <li>
+                    <ul>
+                      {% for entry in table %}
+                          {% if entry.type == "current" %}
+                              {% if entry.match %}
+                                  {% include "_match.html" %}
+                              {% endif %}
+                          {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% empty %}
+                    <li class="pause">Pauze</li>
+                {% endfor %}
+            </ul>
+        </article>
+
+        <article class="col-sm-4 matches" id="upcoming">
+            <ul>
+              <li><h3>Toekomstige wedstrijden</h3></li>
+                {% for table in tables %}
+                <li>
+                  <ul>
+                      {% for entry in table %}
+                          {% if entry.type == "next" %}
+                              {% if entry.match %}
+                                  {% include "_match.html" %}
+                              {% endif %}
+                          {% endif %}
+                      {% endfor %}
+                  </ul>
+                </li>
+                {% empty %}
+                    <li class="pause">Pauze</li>
+                {% endfor %}
+            </ul>
+        </article>
+    </section>
+
+
+  </body>
+</html>

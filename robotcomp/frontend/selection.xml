@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<update roundtype="selection">
+  <ranking>
+    <player name="Swaffelbot" teamnumber="666" score="90"/>
+    <player name="Ukkie" teamnumber="42" score="52"/>
+    <player name="Jos" teamnumber="5" score="42"/>
+    <player name="Piet" teamnumber="2" score="15"/>
+    <player name="Pierke" teamnumber="12" score="5"/>
+    <player name="Jan" teamnumber="1" score="3"/>
+    <player name="Corneel" teamnumber="4" score="0"/>
+    <player name="awesome-oh 5000" teamnumber="13" score="0"/>
+    <player name="Nog iemand" teamnumber="9" score="0"/>
+    <player name="Joris" teamnumber="3" score="0"/>
+    <player name="Niemand" teamnumber="6" score="0"/>
+    <player name="Iemand" teamnumber="8" score="0"/>
+  </ranking>
+
+  <tables>
+    <!-- <table number="1">
+      <match type="last" id="2387">
+        <player name="Swaffelbot" type="house" teamnumber="666" score="3"/>
+        <player name="Ukkie" type="regular" teamnumber="42" score="0"/>
+      </match>
+
+      <match type="current" id="9094">
+        <player name="Joris" type="regular" teamnumber="3"/>
+        <player name="Corneel" type="regular" teamnumber="4"/>
+      </match>
+
+      <match type="next" id="4897">
+        <player name="Jan" type="regular" teamnumber="1"/>
+        <player name="Piet" type="regular" teamnumber="2"/>
+      </match>
+
+      <match type="next" id="5890">
+        <player name="Jos" type="regular" teamnumber="5"/>
+        <player name="Pierke" type="regular" teamnumber="12"/>
+      </match>
+    </table> -->
+
+    <table number="1">
+      <match type="last" id="9094">
+        <player name="Joris" type="regular" teamnumber="3" score="3"/>
+        <player name="Corneel" type="regular" teamnumber="4" score="0"/>
+      </match>
+
+      <match type="current" id="4897">
+        <player name="Jan" type="regular" teamnumber="1"/>
+        <player name="Piet" type="regular" teamnumber="2"/>
+      </match>
+
+      <match type="next" id="5890">
+        <player name="Jos" type="regular" teamnumber="5"/>
+        <player name="Pierke" type="regular" teamnumber="12"/>
+      </match>
+
+      <match type="next" id="1203">
+        <player name="Swaffelbot" type="house" teamnumber="666"/>
+        <player name="Ukkie" type="regular" teamnumber="42"/>
+      </match>
+    </table>
+
+    <table number="2">
+      <match type="last" id="2387">
+        <player name="Swaffelbot" type="house" teamnumber="666" score="3"/>
+        <player name="Ukkie" type="regular" teamnumber="42" score="0"/>
+      </match>
+
+      <match type="current" id="3347">
+        <player name="stottevapenet" type="regular" teamnumber="5"/>
+        <player name="awesome-oh 5000" type="regular" teamnumber="13"/>
+      </match>
+
+      <match type="next" id="4897">
+        <player name="Jan" type="regular" teamnumber="1"/>
+        <player name="Piet" type="regular" teamnumber="2"/>
+      </match>
+
+      <match type="next" id="9094">
+        <player name="Joris" type="regular" teamnumber="3"/>
+        <player name="Corneel" type="regular" teamnumber="4"/>
+      </match>
+    </table>
+
+    <table number="3">
+      <match type="last" id="2387">
+        <player name="Swaffelbot" type="regular" teamnumber="666" score="1"/>
+        <player name="Ukkie" type="regular" teamnumber="42" score="1"/>
+      </match>
+
+      <match type="current" id="3347">
+        <player name="e-shewanella" type="regular" teamnumber="14"/>
+        <player name="Pierke" type="regular" teamnumber="12"/>
+      </match>
+
+      <match type="next" id="4897">
+        <player name="Jan" type="regular" teamnumber="1"/>
+        <player name="Piet" type="regular" teamnumber="2"/>
+      </match>
+
+      <match type="next" id="9094">
+        <player name="Joris" type="regular" teamnumber="3"/>
+        <player name="Corneel" type="regular" teamnumber="4"/>
+      </match>
+    </table>
+  </tables>
+
+  <timer since="1303337043" now="1303337158" running="true"/>
+</update>

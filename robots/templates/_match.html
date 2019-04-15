@@ -1,0 +1,12 @@
+<li class="match table{{ forloop.parentloop.counter0 }}">
+    <span class="glyphicon glyphicon-stop"></span>
+    <span class="player player0 {% if entry.match.get_status_display == "finished_robot1won" or entry.match.get_status_display == "draw" %}winner{% endif %}">
+        <span class="name">{{ entry.match.robot1.name }}</span>
+        <span class="teamnumber">{{ entry.match.robot1.team_number }}</span>
+    </span>
+    vs.
+    <span class="player player1 {% if entry.match.get_status_display == "finished_robot2won" or entry.match.get_status_display == "draw" %}winner{% endif %}">
+        <span class="name">{{ entry.match.robot2.name }}</span>
+        <span class="teamnumber">{{ entry.match.robot2.team_number }}</span>
+    </span>
+</li>

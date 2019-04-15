@@ -1,0 +1,46 @@
+<html>
+  <head>
+		<script type="text/javascript" src="jquery/js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="jquery/js/jquery-ui-1.8.5.custom.min.js"></script>
+	  <script type="text/javascript" src="jquery.quicksand.js"></script>
+    <script type="text/javascript" src="settings.js"></script>
+    <script type="text/javascript" src="comm.js"></script>
+    <script type="text/javascript" src="ui.js"></script>
+    <script type="text/javascript" src="timer.js"></script>
+    <script type="text/javascript" src="selection.js"></script>
+    <script type="text/javascript">
+      Frontend.communication.setRoundType("selection", 4, "right");
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
+  </head>
+
+  <body class="selection selection4 right">
+    <div id="container">
+      <div id="tables">
+        <div id="table3" class="table" data-id="3">
+          <h1 id="guy3">&nbsp;</h1>
+          <ul class="matches"></ul>
+          <div class="highlight"></div>
+        </div>
+
+        <div id="table4" class="table" data-id="4">
+          <h1 id="guy4">&nbsp;</h1>
+          <ul class="matches"></ul>
+          <div class="highlight"></div>
+        </div>
+      </div>
+
+      <div class="ranking_container">
+        <div id="ranking_right" class="ranking">
+          <ol id="ranking_list" start="11">
+          </ol>
+        </div>
+      </div>
+
+      <div id="timer">
+        <div class="remaining"></div>
+      </div>
+    </div>
+  </body>
+</html>

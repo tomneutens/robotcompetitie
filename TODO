@@ -1,0 +1,67 @@
+
+- Lijst met deelnemers die nog meedoen aan de volgende ronde.
+
+- domeinnaam of tiny.cc?
+
+- adverteer de link ergens op de schermen! (of desnoods ergens 'fysiek')
+
+- maak script dat /public_data om de #s naar een server SCP't
+    * zorg dat SSH keys ingesteld zijn zodat dit volledig automatisch kan
+
+- ranking split aanpassen
+    * in ui.js: splitpunt aanpassen
+    * in selection2_right en selection4_right start-attribuut aanpassen
+    * fontgrootte aanpassen
+
+
+
+
+
+
+
+
+
+X planningsalgoritme aanpassen
+    * robots bijkomend sorteren op het aantal matchen dat ze reeds op de huidige tafel gespeeld hebben.
+        * dit moet eigenlijk wel per soort ronde... tafel 1 in de eerste reeks is niet hetzelfde als tafel 1 in de 2de reeks
+        * die info is helaas niet beschikbaar op dat moment...
+
+
+
+
+
+
+
+
+
+
+
+
+
+- 3 fases in plaats van 2 in voorgaande jaren
+    - selectiefase 1: alle robots doen mee, 4 tafels
+    - selectiefase 2: een aantal robots zijn geelimineerd, 2 tafels
+    - finale: 6 robots op 1 groot parcour (dus allemaal tegelijk)
+
+
+- scoring:
+    0 - 0: beide robots gefaald (race niet uitgereden)
+    1 - 0: robot 1 heeft de race uitgereden voor robot 2
+    0 - 1: robot 2 heeft de race uitgereden voor robot 1
+    1 - 1: robot 1 en robot 2 komen op hetzelfde moment aan (zeer zeldzaam!)
+
+
+- eindranking: volgorde aankomst finale + score van fases 1+2 bij ex aequo (dus op het einde moet de volgorde ingegeven worden)
+
+- er moet geen 'wedstrijdweergave' en 'ranking' zijn voor de finale, gewoon een pagina die de 6 robots in volgorde weergeeft
+
+- team attributes:
+    * IEEE
+    * doet mee voor credits of niet
+    * secundair of niet
+
+
+- aparte publieke app:
+    * mobile-friendly pagina die de huidige en volgnede matchen weergeeft + tussenstand
+    * leest gewoon een lokale JSON file in en geeft die weer
+    * JSON file wordt geupdatet vanop de centrale score-PC (gewoon om de paar seconden pushen via SCP of zo)

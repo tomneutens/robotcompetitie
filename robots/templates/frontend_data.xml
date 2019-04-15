@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<update roundtype="{{ roundtype }}">
+  <tables>
+    {% for table in tables %}
+        <table number="{{ forloop.counter }}">
+        {% for entry in table %}
+            {% if not entry.match %}
+            <match type="{{ entry.type }}" id="-1"></match>
+            {% else %}
+            <match type="{{ entry.type }}" id="{{ entry.match.id }}" status="{{ entry.match.get_status_display }}">
+                <player name="{{ entry.match.robot1.name }}" teamnumber="{{ entry.match.robot1.team_number }}" type="{{ entry.match.robot1.type|yesno:'house,regular' }}" avatar="{% static entry.match.robot1.avatar.url %}"/>
+                <player name="{{ entry.match.robot2.name }}" teamnumber="{{ entry.match.robot2.team_number }}" type="{{ entry.match.robot2.type|yesno:'house,regular' }}" avatar="{% static entry.match.robot2.avatar.url %}"/>
+            </match>
+            {% endif %}
+        {% endfor %}
+        </table>
+    {% endfor %}
+  </tables>
+
+  <timer since="{{ timer.since }}" now="{{ timer.now }}" running="{{ timer.running|yesno:'true,false' }}"/>
+</update>
