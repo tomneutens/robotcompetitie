@@ -12,64 +12,16 @@ class RobotManager(models.Manager):
     """
     def get_queryset(self):
         qs = super(RobotManager, self).get_queryset()
-        # old query for 2012's scoring mechanism: win = 1, draw/loss = 0
-        #query_str = """
-        #SELECT COUNT(*) FROM robots_match
-        #JOIN robots_round ON robots_match.round_id = robots_round.id
-        #JOIN robots_competition ON robots_round.competition_id = robots_competition.id
-        #WHERE robots_competition.running = 1
-        #AND robots_round.type = %d
-        #AND ((robots_match.robot1_id = robots_robot.id AND robots_match.status = 3)
-        #OR (robots_match.robot2_id = robots_robot.id AND robots_match.status = 4))
-        #"""
-
-        # old query for 2013's scoring mechanism: win = 3, draw = 1, loss = 0
-        # this crazy query counts the # of matches won, multiplies it by 3,
-        # then adds the # of matches that ended in a draw. This is the score.
-        #query_str = """
-        #((SELECT COUNT(*) FROM robots_match
-        #JOIN robots_round ON robots_match.round_id = robots_round.id
-        #JOIN robots_competition ON robots_round.competition_id = robots_competition.id
-        #WHERE robots_competition.running = 1
-        #AND robots_round.type = {0}
-        #AND ((robots_match.robot1_id = robots_robot.id AND robots_match.status = 3)
-        #OR (robots_match.robot2_id = robots_robot.id AND robots_match.status = 4))) * 3 +
-        #SELECT COUNT(*) FROM robots_match
-        #JOIN robots_round ON robots_match.round_id = robots_round.id
-        #JOIN robots_competition ON robots_round.competition_id = robots_competition.id
-        #WHERE robots_competition.running = 1
-        #AND robots_round.type = {1}
-        #AND ((robots_match.robot1_id = robots_robot.id AND robots_match.status = 5)
-        #OR (robots_match.robot2_id = robots_robot.id AND robots_match.status = 5))))
-        #"""
-
-        # query for this year's scoring mechanism: win = 1, draw = 0, loss = 0, both failed = 0
-        #query_str = """
-        #SELECT COUNT(*) FROM robots_match
-        #JOIN robots_round ON robots_match.round_id = robots_round.id
-        #JOIN robots_competition ON robots_round.competition_id = robots_competition.id
-        #WHERE robots_competition.running = 1
-        #AND robots_round.type = {0}
-        #AND ((robots_match.robot1_id = robots_robot.id AND (robots_match.status = 3))
-        #OR (robots_match.robot2_id = robots_robot.id AND (robots_match.status = 4)))
-        #"""
-
-        # query for this year's scoring mechanism: win = 1, draw = 1, loss = 0, both failed = 0
-        #query_str = """
-        #SELECT COUNT(*) FROM robots_match
-        #JOIN robots_round ON robots_match.round_id = robots_round.id
-        #JOIN robots_competition ON robots_round.competition_id = robots_competition.id
-        #WHERE robots_competition.running = 1
-        #AND robots_round.type = %d
-        #AND ((robots_match.robot1_id = robots_robot.id AND (robots_match.status = 3 OR robots_match.status = 5))
-        #OR (robots_match.robot2_id = robots_robot.id AND (robots_match.status = 4 OR robots_match.status = 5)))
-        #"""
-
-
-
-        # old query for 2018's scoring mechanism: win = 3, lost/finished = 1, not finished/draw = 0
+        
+        # query scoring mechanism (both robot race and sumo): win = 3, lost/finished = 1, not finished = 0 (only for race), draw = 1 (only for sumo)
+        # The manage_round.html file has to be changed to include the correct radio buttons for each competition.
         # this crazy query counts the # of matches won, multiplies it by 3,
         # then adds the # of matches that the robot lost but finished. This is the score.
+        # 3: robot 1 won, robot 2 did not finish
+        # 7: robot 1 won, robot 2 finished
+        # 4: robot 2 won, robot 1 did not finish
+        # 8: robot 2 won, robot 1 did not finish
+        # 5: draw
         query_str = """
         (
           (
@@ -86,15 +38,15 @@ class RobotManager(models.Manager):
                 (
                   robots_match.robot1_id = robots_robot.id
                   AND (
-                    robots_match.status = 3
-                    OR robots_match.status = 7
+                    robots_match.status = 3    
+                    OR robots_match.status = 7 
                   )
                 )
                 OR (
                   robots_match.robot2_id = robots_robot.id
                   AND (
-                    robots_match.status = 4
-                    OR robots_match.status = 8
+                    robots_match.status = 4     
+                    OR robots_match.status = 8  
                   )
                 )
               )
@@ -111,11 +63,15 @@ class RobotManager(models.Manager):
             AND (
               (
                 robots_match.robot1_id = robots_robot.id
-                AND robots_match.status = 8
+                AND (robots_match.status = 8
+                    OR robots_match.status = 5) 
               )
               OR (
                 robots_match.robot2_id = robots_robot.id
-                AND robots_match.status = 7
+                AND (
+                    robots_match.status = 7 
+                    OR robots_match.status = 5 
+                    ) 
               )
             )
         )
@@ -125,12 +81,12 @@ class RobotManager(models.Manager):
 
 
         # These queries are for the sumo competition since we want to have a separate scoring for qualifiers and final
-        #selection_query = query_str.format(0, 0)# type 0 = selection rounds
-        #final_query = query_str.format(1, 1) # type 1 = final rounds
+        selection_query = query_str.format(0, 0)# type 0 = selection rounds
+        final_query = query_str.format(1, 1) # type 1 = final rounds
 
         # These queries are for the robot race
-        selection_query = query_str.format(0, 0)# type 0 = selection rounds
-        final_query = selection_query
+        #selection_query = query_str.format(0, 0)# type 0 = selection rounds
+        #final_query = selection_query
         #final_query = query_str.format(1, 1) # type 1 = final rounds
 
         print "Executing query"
@@ -160,7 +116,9 @@ class RobotManager(models.Manager):
         qs = self.get_queryset()
         print qs
         print "filter on status"
-        return qs.filter(status=0)
+        filtered = qs.filter(status=0)
+        print(filtered)
+        return filtered
 
     def for_scheduling(self):
         """
@@ -169,8 +127,15 @@ class RobotManager(models.Manager):
         """
         qs = self.participating()
         if len(qs) % 2 == 0:
+            print("nr of robots")
+            print(len(qs))
+            print("even number of robots including the house robot")
             return qs
         else:
+            print("nr of robots")
+            print(len(qs))
+            print("uneven number of participants including house robot")
+            print("removing the house robot")
             return qs.exclude(type=1)
 
 
@@ -373,13 +338,17 @@ class Round(models.Model):
         self.plan_round()
 
     def plan_round(self):
+        print("planning round")
         print(self.type)
         if self.type == 0: # selection
+            print("planning selection round")
             self.plan_selection_round()
         elif self.type == 1: # final
+            print("planning final round")
             self.plan_final_round()
 
     def plan_selection_round(self):
+        print("plan round")
         """
         This method creates matches for the round. It will include all currently participating
         robots, and optionally (if there is an odd number of regular robots) the house robot.
@@ -392,6 +361,11 @@ class Round(models.Model):
         robots_to_schedule = list(Robot.objects.for_scheduling())
         random.shuffle(robots_to_schedule)
         # the shuffling prevents the same robot from always being picked first.
+        print("the number of robots to schedule is")
+        print(len(robots_to_schedule))
+        if len(robots_to_schedule) % 2 != 0:
+            print("uneven number of participants")
+            return
 
         current_table = 0
         while len(robots_to_schedule) > 0:

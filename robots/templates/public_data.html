@@ -1,115 +1,457 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="refresh" content="90"> <!-- refresh every 80 secs -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Robotcompetitie: wedstrijdinfo</title>
+<!DOCTYPE HTML>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<html>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<meta http-equiv="refresh" content="5">
+	<title>Robotcompetitie</title>
+	<style>
+	
+	    body {
+	        color: #3a3c78;
+	    }
+	    
+	    .floatright {
+	        float: right;
+	    }
+	    
+	    .name{
+	        min-width: 100px;
+	        margin-right: auto;
+	        display: inline-block;
+	        padding-left: 10px;
+	        box-sizing: border-box;
+	        overflow: hidden;
+	        text-overflow: ellipsis;
+	    }
+	    
+	    .score{
+	        width: 60px;
+	        display: inline-block;
+	        text-align: center;
+	        box-sizing: border-box;
+	    }
+	    .teamnumber{
+	        width: 100px;
+	        display: inline-block;
+	        text-align: center;
+	        box-sizing: border-box;
+	    }
+	    
+	    .listitemcontainer {
+	        box-sizing: border-box;
+	        display: inline-block;
+	        width: 100%;
+	        white-space:nowrap;
+	    }
+	    
+	    .name_in_matches {
+	        display: inline-block;
+	        box-sizing: border-box;
+	        white-space: nowrap; 
+	        overflow-x: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+	    }
+	    
+	    .title_in_matches {
+	        font-weight: bold;
+	    }
+	    
+	    .teamnumber_in_matches{
+	        display: inline-block;
+	        box-sizing: border-box;
+	        width: 20px;
+	        text-align: center;
+	    }
+	    
+	    .match_info{
+	        float: right;
+	    }
+	    
+	    .table{
+	        min-width:40px;
+	        margin-right: auto;
+	        display: inline-block;
+	        box-sizing: border-box;
+	    }
+	    .player_in_matches{
+	        display: inline-block;
+	        box-sizing: border-box;
+	    }
+	    
+	    .match {
+	        clear: both;
+	    }
+	    
+	    .table_id0{
+	        background-color: red;
+	    }
+	    
+	    .table_id1{
+	        background-color: green;
+	    }
+	    
+	    .table_id2{
+	        background-color: blue;
+	    }
+	    
+	    .table_id3{
+	        background-color: yellow;
+	    }
+	    
+	    .glyphicon-stop {
+	        width: 10px;
+	        height: 10px;
+	        display: inline-block;
+	        box-sizing: border-box;
+	    }
+	    
+	    
+	    
+	    .ranking li:before { 
+          width: 30px;
+          text-align: right;
+          margin-right: 10px;
+          display: inline-block;
+          float: right;
+        }
+	    
+	    footer {
+	        margin: 20px;
+	        clear: both;
+	        float: right;
+	    }
+	    
+	    ul {
+            list-style-type: none;
+            padding: 5px;
+            vertical-align: middle;
+            
+        }
+        
+        .scroll_pane {
+            overflow-y: scroll;
+            height: 65%;
+        }
+	    
+	    .ranking_header {
+	        margin-left:0; /* Remove the default left margin */
+	        padding-left:0; /* Remove the default left padding */
+	        overflow-y: scroll;
+	        margin-bottom: 0;
+	        font-weight: bold;
+	    }
+	    
+	    
+	    .ranking_header > li {
+	        position:relative; /* Create a positioning context */
+	        margin:0 0 6px 2em; /* Give each list item a left margin to make room for the numbers */
+	        padding:4px 8px; /* Add some spacing around the content */
+	        list-style:none; /* Disable the normal item numbering */
+	        background:#f6f6f6;
+	        width: 85%;
+        }
+        .ranking_header > li:before {
+	        /* Position and style the number */
+	        position:absolute;
+	        top:-2px;
+	        left:-2em;
+	        -moz-box-sizing:border-box;
+	        -webkit-box-sizing:border-box;
+	        box-sizing:border-box;
+	        width:2em;
+	        /* Some space between the number and the content in browsers that support
+	           generated content but not positioning it (Camino 2 is one example) */
+	        margin-right:8px;
+	        padding:4px;
+	        border-bottom:1px solid #fff;
+	        color:#fff;
+	        background:#666;
+	        font-weight:bold;
+	        font-family:"Helvetica Neue", Arial, sans-serif;
+	        text-align:center;
+        }
+        li .ranking_header,
+        li .ranking_header {margin-top:6px;}
+        .ranking_header .ranking_header li:last-child {margin-bottom:0;}
+	    
+	    
+	    ol {
+	        counter-reset:li; /* Initiate a counter */
+	        margin-left:0; /* Remove the default left margin */
+	        margin-top: 0;
+	        padding-left:0; /* Remove the default left padding */
+	        overflow-y: scroll;
+	        height: 70%;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 0px;  /* Remove scrollbar space */
+            background: transparent;  /* Optional: just make scrollbar invisible */
+        }
+        ol > li {
+	        position:relative; /* Create a positioning context */
+	        margin:0 0 6px 2em; /* Give each list item a left margin to make room for the numbers */
+	        padding:4px 8px; /* Add some spacing around the content */
+	        list-style:none; /* Disable the normal item numbering */
+	        background:#f6f6f6;
+	        width: 85%;
+        }
+        ol > li:before {
+	        content:counter(li); /* Use the counter as content */
+	        counter-increment:li; /* Increment the counter by 1 */
+	        /* Position and style the number */
+	        position:absolute;
+	        top:-0.5px;
+	        left:-38px;
+	        padding: 4px;
+	        color:#fff;
+	        background:#666;
+	        font-weight:bold;
+	        font-family:"Helvetica Neue", Arial, sans-serif;
+        }
+        li ol,
+        li ul {margin-top:6px;}
+        ol ol li:last-child {margin-bottom:0;}
+	    
+	    .container {
+	        /*border: solid black 1px;*/
+	        height: 400px;
+	        overflow: hidden;
+	        float: left;
+	        box-sizing: border-box;
+	        padding: 15px 7px 15px 7px;
+	    }
+	    
+	    .content_box{
+	        background-color: rgba(30, 100, 200, 0.15);
+	        padding: 10px;
+	        height: 100%;
+	    }
+	    
+	    h2 {
+	        padding-top: 0;
+	        margin: 0;
+	    }
+	    
+	    .fa-trophy{
+	        color: goldenrod;
+	    }
+	    
+	    .fas {
+	        padding-right: 5px;
+	        font-size: 10px;
+	    }
+	    
+	    
+	    /* #### Mobile Phones Portrait #### */
+        @media screen and (max-device-width: 480px) and (orientation: portrait){
+          /* some CSS here */
+          .container {
+	        width: 100%;
+	      }
+	      .name_in_matches {
+	            width: 100px;
+	        }
+	      .player_in_matches{
+	        width: 131px;
+	      }
+	      .name {
+	        width: 100px;
+	      }
+        }
+        
+        /* #### Mobile Phones #### */
+        @media screen and (max-device-width: 767px){
+          /* some CSS here */
+          .container {
+	        width: 100%;
+	      }
+	      .name_in_matches {
+	            width: 100px;
+	        }
+	      .player_in_matches{
+	        width: 131px;
+	      }
+	      .name {
+	        width: 100px;
+	      }
+        }
+                
+        /* #### Tablets Portrait or Landscape #### */
+        @media screen and (min-device-width: 768px) and (max-device-width: 1024px){
+          /* some CSS here */
+          .container {
+	        width: 50%;
+	      }
+	      .name_in_matches {
+	            width: 150px;
+	      }
+	      .player_in_matches{
+	        width: 175px;
+	      }
+        }
+        
+        /* #### Desktops #### */
+        @media screen and (min-width: 1024px){
+          /* some CSS here */
+          .container {
+	        width: 50%;
+	      }
+	      .name_in_matches {
+                width: 150px;
+           }
+          .player_in_matches{
+	        width: 175px;
+	      }
+        }
+	</style>
+</head>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <link rel="stylesheet" type="text/css" href="http://tw06v053.ugent.be/robotcomp/frontend/style-public.css">
-
-  </head>
-  <body>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <!-- jQuery cookie plugin -->
-    <script src="//cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
-
-    <!-- from http://stackoverflow.com/questions/10523433/how-do-i-keep-the-current-tab-active-with-twitter-bootstrap-after-a-page-reload
-    this ensures that the currently selected tab is reloaded after a page refresh. The current tab is stored as a cookie. -->
-    <script src="http://tw06v053.ugent.be/robotcomp/frontend/public.js"></script>
-
-    <h1>Robotcompetitie: wedstrijdinfo</h1>
-
-    <ul class="nav nav-pills">
-        <li  class="active"><a href="#ranking" data-toggle="tab">Rangschikking</a>
-      </li>
-      <li><a href="#recent" data-toggle="tab">Recente matches</a></li>
-      <li><a href="#current" data-toggle="tab">Huidige matches</a></li>
-      <li><a href="#upcoming" data-toggle="tab">Komende matches</a></li>
-    </ul>
-
-    <section class="tab-content">
-        <article class="tab-pane ranking " id="ranking">
-            <ol class="rectangle-list">
+<body>
+	<div id="upcomming" class="container">
+	    <div class="content_box">
+	    <h2>Volgende wedstrijden</h2>
+	    <ul>
+	            <li class="title_in_matches">
+                    <span class="table table_title">Tafel</span>
+                    <span class="match_info">
+                        <span class="player_in_matches player0_title">
+                            <span class="name_in_matches name0_title">Robot 1</span>
+                            <span class="teamnumber_in_matches name0_number">Nr.</span>
+                        </span>
+                        <span class="player_in_matches player1_title">
+                            <span class="name_in_matches name1_title">Robot 2</span>
+                            <span class="teamnumber_in_matches name1_number">Nr.</span>
+                        </span>
+                    </span>
+                </li>
+	        </ul>
+	        <ul class="scroll_pane">
+                {% for match in matches %}
+                    {% if match.type == "next" %}
+                        {% if match.match %}
+                            {% include "_match.html" %}
+                        {% endif %}
+                    {% endif %}
+                {% empty %}
+                    <li class="pause">Pauze</li>
+                {% endfor %}
+            </ul>
+        </div>
+	</div>
+	<div id="currents" class="container">
+	    <div class="content_box">
+	    <h2>Huidige wedstrijden</h2>
+	    <ul>
+	            <li class="title_in_matches">
+                    <span class="table table_title">Tafel</span>
+                    <span class="match_info">
+                        <span class="player_in_matches player0 player0_title">
+                            <span class="name_in_matches name0_title">Robot 1</span>
+                            <span class="name0_number teamnumber_in_matches">Nr.</span>
+                        </span>
+                        <span class="player_in_matches player1 player1_title">
+                            <span class="name_in_matches name1_title">Robot 2</span>
+                            <span class="name1_number teamnumber_in_matches">Nr.</span>
+                        </span>
+                    </span>
+                </li>
+	        </ul>
+	        <ul class="scroll_pane">
+                {% for match in matches %}
+                    {% if match.type == "current" %}
+                        {% if match.match %}
+                            {% include "_match.html" %}
+                        {% endif %}
+                    {% endif %}
+                {% empty %}
+                    <li class="pause">Pauze</li>
+                {% endfor %}
+            </ul>
+        </div>
+	</div>
+	<div id="recents" class="container">
+	    <div class="content_box">
+	    <h2>Gespeelde wedstrijden</h2>
+	        <ul>
+	            <li class="title_in_matches">
+                    <span class="table table_title">Tafel</span>
+                    <span class="match_info">
+                        <span class="player_in_matches player0_title">
+                            <span class="name_in_matches name0_title">Robot 1</span>
+                            <span class="teamnumber_in_matches name0_number">Nr.</span>
+                        </span>
+                        <span class="player_in_matches player1_title">
+                            <span class="name_in_matches name1_title">Robot 2</span>
+                            <span class="teamnumber_in_matches name1_number">Nr.</span>
+                        </span>
+                    </span>
+                </li>
+	        </ul>
+	        <ul class="scroll_pane played_matches">
+                {% for match in matches %}
+                    {% if match.type == "last" %}
+                        {% if match.match %}
+                            {% include "_match.html" %}
+                        {% endif %}
+                    {% endif %}
+                {% empty %}
+                    <li class="pause">Pauze</li>
+                {% endfor %}
+            </ul>
+        </div>
+	</div>
+	<div id="ranking" class="container">
+	    <div class="content_box">
+	    <h2>Rangschikking</h2>
+	        <ul class="ranking_header">
+	            <li class="ranking_header_line">
+	                <span class="name">Teamnaam</span>
+	                <span class="floatright">
+	                    <span class="teamnumber">Teamnummer</span>
+	                    <span class="score">Score</span>
+	                </span>
+	            </li>
+	        </ul>
+	        <ol class="rectangle-list ranking">
                 {% for entry in ranking_entries %}
                     <li class="player">
                       <span class="listitemcontainer">
                         <span class="name">{{ entry.name }}</span>
-                        <span class="teamnumber">{{ entry.teamnumber }}</span>
-                        <span class="score">{{ entry.score }}</span>
+                        <span class="floatright">
+                            <span class="teamnumber">{{ entry.teamnumber }}</span>
+                            <span class="score">{{ entry.score }}</span>
+                        </span>
                       </span>
                     </li>
                 {% endfor %}
             </ol>
+        </div>
+	</div>
+	
 
-        </article>
+	<footer>
+		<p>&copy; 2019 Dwengo</p>
+	</footer>
+	
+	<script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+  
+  <script>
+    $(".robot1status3").addClass("fas fa-trophy");
+    $(".robot1status7").addClass("fas fa-trophy");
+    $(".robot2status4").addClass("fas fa-trophy");
+    $(".robot2status8").addClass("fas fa-trophy");
+  </script>
 
-        <article class="tab-pane matches" id="recent">
-            <ul>
-                {% for table in tables %}
-                    {% for entry in table %}
-                        {% if entry.type == "last" %}
-                            {% if entry.match %}
-                                {% include "_match.html" %}
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                {% empty %}
-                    <li class="pause">Pauze</li>
-                {% endfor %}
-            </ul>
-        </article>
+</body>
 
-        <article class="tab-pane matches" id="current">
-            <ul>
-                {% for table in tables %}
-                    {% for entry in table %}
-                        {% if entry.type == "current" %}
-                            {% if entry.match %}
-                                {% include "_match.html" %}
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                {% empty %}
-                    <li class="pause">Pauze</li>
-                {% endfor %}
-            </ul>
-        </article>
-
-        <article class="tab-pane matches active" id="upcoming">
-            <ul>
-                {% for table in tables %}
-                    {% for entry in table %}
-                        {% if entry.type == "next" %}
-                            {% if entry.match %}
-                                {% include "_match.html" %}
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                {% empty %}
-                    <li class="pause">Pauze</li>
-                {% endfor %}
-            </ul>
-        </article>
-    </section>
-
-
-  </body>
 </html>

@@ -89,20 +89,34 @@ def start_next_matches(request, round_id):
 
 
 def get_ranking_entries():
-    print "getting ranking entries"
-    # ranking - ALWAYS sort by selection score, even in the final
+    print("getting ranking entries")
+    try:
+        print("trying to get rounds")
+        current_round = Round.objects.get(status=1)
+    except:
+        print("no running rounds found")
+        current_round = None
+    
+    if current_round and current_round.type == 1:
+        print("final")
+        roundtype = 'final'
+    else:
+        print("selection or none")
+        roundtype = 'selection'
+        
+    print "getting robots"
     robots = Robot.objects.filter(status=0, type=0) # participating robots, exclude house robot
     print "i have a list of robots"
 
 
-    #if roundtype == 'selection':
-    print "the last round was a selection round"
-    score = lambda r: r.selection_score
-    order_field = '-selection_score'
-    #elif roundtype == 'final':
-    #    print "the last round was a final round"
-    #    score = lambda r: r.final_score
-    #    order_field = '-final_score'
+    if roundtype == 'selection':
+        print "the last round was a selection round"
+        score = lambda r: r.selection_score
+        order_field = '-selection_score'
+    elif roundtype == 'final':
+        print "the last round was a final round"
+        score = lambda r: r.final_score
+        order_field = '-final_score'
 
     ranking_entries = []
     print "creating ranking entries"
@@ -165,6 +179,39 @@ def get_tables(current_round):
         print tables
 
     return tables
+    
+def get_matches_with_tables(current_round):
+    print("get matches with tables")
+    matches = []
+    for t in range(current_round.num_tables):
+        
+        # most recent finished match per table
+        match = current_round.most_recent_match_for_table(t)
+        matches.append({ 'type': 'last', 'table': t, 'match': match })
+
+        # running match per table
+        match = current_round.running_match_for_table(t)
+        matches.append({ 'type': 'current', 'table': t , 'match': match })
+
+    for upcomming in range(NUM_UPCOMING_MATCHES):
+        for t in range(current_round.num_tables):
+            # a couple of upcoming matches
+            upcomming_matches = current_round.upcoming_matches_for_table(t)
+            print("nr of matches left")
+            print(len(upcomming_matches))
+            print("wanted upcomming")
+            print(upcomming)
+            # check if there are enough matches left
+            if len(upcomming_matches) > upcomming:
+                upcoming_match = current_round.upcoming_matches_for_table(t)[upcomming]
+                if upcoming_match is not None:
+                    matches.append({ 'type': 'next', 'table':t , 'match': upcoming_match })
+
+
+        print "Printing matches with tables:"
+        print matches
+
+    return matches
 
 
 def frontend_data(request):
@@ -211,12 +258,37 @@ def frontend_data(request):
 
 
 def public_data(request):
+    matches = []
+    if Round.objects.filter(status=1).count() == 0:
+        matches = []
+        tables = []
+    else:
+        current_round = Round.objects.get(status=1)
+        if current_round.type == 1: # final round, no tables
+            matches = get_matches_with_tables(current_round)
+            tables = []
+        else:
+            matches = get_matches_with_tables(current_round)
+            tables = get_tables(current_round)
+            
+            
+    print("---------------------------------------matches--------------------------------------------------------")
+    print(matches)
+
+    ranking_entries = get_ranking_entries()
+
+    return render_to_response('public_data.html', {
+        'ranking_entries': ranking_entries,
+        'matches': matches,
+        'tables': tables,
+    })
+    
     """
     Generate a static HTML file with all relevant info that will be periodically uploaded to
-    a public location. (with bootstrap so it plays nice on mobile)
+    a public location. (with custom css so it plays nice on mobile)
     """
 
-    if Round.objects.filter(status=1).count() == 0:
+    """if Round.objects.filter(status=1).count() == 0:
         tables = []
     else:
         current_round = Round.objects.get(status=1)
@@ -224,13 +296,16 @@ def public_data(request):
             tables = []
         else:
             tables = get_tables(current_round)
+            
+    print("---------------------------------------tables--------------------------------------------------------")
+    print(tables)
 
     ranking_entries = get_ranking_entries()
 
     return render_to_response('public_data.html', {
         'ranking_entries': ranking_entries,
         'tables': tables,
-    })
+    })"""
 
 def live_display(request):
     """
