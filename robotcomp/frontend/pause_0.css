@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    background-color: #EDF5E1;
+}
+
+#logo_banner{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    height: 10%;
+    width: 100%;
+    bottom: 0;
+    border-top: solid black 1px;
+    line-height: 75px;
+  }
+
+  #ugent_logo{
+    position: relative;
+    max-height: 80%;
+    transform: translateY(20%);
+  }
+  
+  #dwengo_logo{
+    position: relative;
+    max-height: 80%;
+    transform: translateY(20%);
+  }
+  
+  #dekimo_logo{
+    position: relative;
+    max-height: 80%;
+    transform: translateY(20%);
+  }
+  #makerfaire_logo{
+    position: relative;
+    max-height: 80%;
+    transform: translateY(20%);
+    margin-right: 70px;
+  }
+  
+  #nameIdContainer{
+    z-index: 20;
+  }
+  
+  #external_url{
+    font-size: 50px;
+    vertical-align: middle;
+    padding-left: 20px;
+    margin-top: 15px;
+  }
+
+  .pauze {
+      position: absolute;
+      left: calc(50vw - 20vw);
+      top: calc(50vh - 20vh);
+      font-size: 30vh;
+      box-sizing: border-box;
+  }
+
+  .pause_container {
+      display: inline-block;
+  }
+
+  .mySlides {
+      display: inline-block;
+      max-width: 100%;
+      max-height: 100%;
+      vertical-align: middle;
+  }
+
+  .sideshow_container {
+    width: 100vw;
+    height: 90vh;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    background-color: black;
+    white-space: nowrap;
+    padding: 5em;
+  }
+
+  .helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}

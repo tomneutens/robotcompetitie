@@ -38,12 +38,9 @@ jQuery.fn.fontfit = function() {
 Frontend.ui = {
   update: function(data) {
      Frontend.ui.roundtype = $("update", data).attr("roundtype");
-     //var rankingData = $("ranking", data);
      var tablesData = $("tables", data);
      var timerData = $("timer", data);
-     //Frontend.ui.updateRanking(rankingData);
      Frontend.ui.updateTables(tablesData);
-     //Frontend.ui.updateTimer(timerData);
   },
 
 
@@ -91,16 +88,17 @@ Frontend.ui = {
 
   convertPlayerToHtmlForTable: function(playerData) {
     var html = $("<li class='player'/>");
-
+    var nameIdContainer = $("<span class='nameIdContainer' />");
     var teamNumberHtml = "<div class='team'><span>" + playerData.attr("teamnumber") + "</span></div>";
     var nameHtml = "<div class='name'>" + playerData.attr("name") + "</div>";
     // var teamNumberHtml = "<span class='team'>" + playerData.attr("teamnumber") + "</span>";
     // var nameHtml = "<div class='name'>" + teamNumberHtml + ". " + playerData.attr("name") + "</div>";
-    var avatarHtml = "<div class='avatar'><img src='" + playerData.attr("avatar") + "'><div class='avatar-overlay'></div></div>";
-
+    var avatarHtml = "<div class='avatar'><img src='" + playerData.attr("avatar") + "'><div class='avatar-overlay fas fa-award'></div></div>";
+    
+    nameIdContainer.append(teamNumberHtml);
+    nameIdContainer.append(nameHtml);
     html.append(avatarHtml);
-    html.append(teamNumberHtml);
-    html.append(nameHtml);
+    html.append(nameIdContainer);
 
     html.addClass(playerData.attr("type"));
     html.attr("data-id", playerData.attr("teamnumber"));
@@ -112,6 +110,7 @@ Frontend.ui = {
     var html = $("<li class='player'/>");
     var teamStr = "(" + playerData.attr("teamnumber") + ")";
     var avatarHtml = "<div class='avatar'><img src='" + playerData.attr("avatar") + "'><div class='avatar-overlay'></div></div>";
+    
 
     html.append(avatarHtml);
     html.append("<div class='name'>" + playerData.attr("name") + "</div>");
@@ -122,6 +121,7 @@ Frontend.ui = {
 
     return html;
   },
+  
 
   updateTables: function(tablesData) {
     tablesData.find("table").each(function() {
@@ -130,25 +130,45 @@ Frontend.ui = {
       var tableDiv = $("div.table[data-id='" + tableNumber + "']");
       var newMatches = Frontend.ui.convertTableToHtml(tableData);
 
-      $("ul.matches li.match").addClass("animated");
-      $("ul.matches", tableDiv).quicksand(newMatches.find("li.match"), {
-        'duration': Frontend.settings.animationDuration,
-        'adjustHeight': false,
-        'enhancement': function() {
-          $("ul.matches li.match li.player .name").each(function(){
-            $(this).fontfit();
-          });
-          $("ul.matches li.match.current li.player .name").each(function(){
-            $(this).fontfit();
-          });
-        },
-      },
-      function() {
-        $("ul.matches li.match").removeClass("animated");
-      });
+      var matchesList = $("div.table[data-id='" + tableNumber + "'] > div.matches")
+      matchesList.empty();
+      matchesList.append(newMatches);
+      $(".nameIdContainer").css('display','inline-block').css("min-width", "200px");
+
 
     });
+    $("li.last.to_animate").each(function(){
+      var elem = $(this);
+      var players = elem.find(".player");
+      var prevMatch = $(players[0]).attr("data-id") + "_" + $(players[1]).attr("data-id");
+      
+      var table_number = $(this).parents(".table").attr("data-id");
+      if (prevMatch == Frontend.ui.previouslyAnimated[table_number-1]){
+        $(this).removeClass("to_animate");
+      }
+    });
+
+    // Animate the update
+    $("li.last.to_animate").css({"margin-bottom": "-50%"});
+    $("li.last.to_animate").animate({
+        "margin-bottom": 0
+    }, 1000, function(){
+      console.log("animation finished");
+      var elem = $(this);
+      var players = elem.find(".player");
+      console.log(players);
+      var prevMatch = "";
+      if (players.length == 2) {
+        var prevMatch = $(players[0]).attr("data-id") + "_" + $(players[1]).attr("data-id");
+      } 
+      console.log(prevMatch);
+      var table_number = $(this).parents(".table").attr("data-id");
+      console.log(table_number);
+      Frontend.ui.previouslyAnimated[table_number-1] = prevMatch;
+    });
   },
+
+  previouslyAnimated: ["", "", "", ""],
 
 
   convertTableToHtml: function(tableData) {
@@ -172,7 +192,7 @@ Frontend.ui = {
     var playersData = matchData.find("player");
     console.log(matchStatus);
 
-    var html = $("<li/>").addClass("match").addClass(matchType);
+    var html = $("<li/>").addClass("match").addClass("to_animate").addClass(matchType);
     html.attr("data-id", matchId);
     html.addClass(matchStatus);
 

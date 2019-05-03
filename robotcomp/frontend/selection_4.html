@@ -1,0 +1,70 @@
+<html>
+  <head>
+	<script type="text/javascript" src="jquery/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="settings.js"></script>
+    <script type="text/javascript" src="comm.js"></script>
+    <script type="text/javascript" src="ui.js"></script>
+    <script type="text/javascript" src="timer.js"></script>
+    <script type="text/javascript">
+      Frontend.communication.setRoundType("selection", 4, "right");
+    </script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="selection_4.css"></link>
+    
+  </head>
+
+  <body class="selection selection4 right">
+    <div id="container">
+      <div id="tables">
+        <div id="table1" class="table" data-id="1">
+          <div class="matches"></div>
+          <div class="highlight"></div>
+        </div>
+        
+        <div id="table2" class="table" data-id="2">
+          <div class="matches"></div>
+          <div class="highlight"></div>
+        </div>
+      
+        <div id="table3" class="table" data-id="3">
+          <div class="matches"></div>
+          <div class="highlight"></div>
+        </div>
+
+        <div id="table4" class="table" data-id="4">
+          <div class="matches"></div>
+          <div class="highlight"></div>
+        </div>
+      </div>
+
+      <div class="ranking_container">
+        <div id="ranking_right" class="ranking">
+          <ol id="ranking_list" start="11">
+          </ol>
+        </div>
+      </div>
+
+      <div id="timer">
+        <div class="remaining"></div>
+      </div>
+
+      <div class="table_identifier table1_id"></div>
+      <div class="table_identifier table2_id"></div>
+      <div class="table_identifier table3_id"></div>
+      <div class="table_identifier table4_id"></div>
+
+      <div class="table_border table1_border"></div>
+      <div class="table_border table2_border"></div>
+      <div class="table_border table3_border"></div>
+      <div class="table_border table4_border"></div>
+    </div>
+    <div id="logo_banner">
+      <span id="external_url">dwengo.live</span>
+      <img id="ugent_logo" class=".logo" src="/frontend/ugent_logo.png"></img>
+      <img id="dwengo_logo" class=".logo" src="/frontend/dwengo_logo.png"></img>
+      <img id="dekimo_logo" class=".logo" src="/frontend/dekimo_logo.png"></img>
+      <img id="makerfaire_logo" class=".logo" src="/frontend/makerfaire_logo.png"></img>
+    </div>
+  </body>
+</html>

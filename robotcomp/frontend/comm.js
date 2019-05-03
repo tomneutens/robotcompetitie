@@ -13,6 +13,7 @@ Frontend.communication = {
   },
   
   poll: function() {
+    // Get match data
     $.ajax({
       url: Frontend.settings.serverUrl + Frontend.communication.getQueryString(),
       type: "GET",
@@ -27,8 +28,9 @@ Frontend.communication = {
         if (Frontend.settings.debugMode) window.alert("Something went wrong :(\n" + error);
       },
     });
-
-    $.ajax({
+    // Skip this for now
+    // Get ranking data
+    /*$.ajax({
       url: Frontend.settings.serverRankingUrl + Frontend.communication.getQueryString(),
       type: "GET",
       dataType: "xml",
@@ -40,9 +42,9 @@ Frontend.communication = {
       error: function(blargh, error) {
         if (Frontend.settings.debugMode) window.alert("Something went wrong :(\n" + error);
       },
-    });
+    });*/
   },
-    
+  // Update the UI based on new data + sync timer
   process: function(data) {
     // window.data = data; // TODO DEBUG
     Frontend.ui.update(data);
@@ -68,8 +70,7 @@ Frontend.communication = {
     var numTables = $("table", data).length;
 
     if ((roundType != Frontend.communication.currentRoundType) || (numTables != Frontend.communication.currentNumTables)) {
-      // window.alert("redirecting");
-      document.location.href = roundType + numTables.toString() + "_" + Frontend.communication.currentSide + ".html" + Frontend.communication.getQueryString();
+      document.location.href = roundType + "_" + numTables.toString() + ".html" + Frontend.communication.getQueryString();
     }
   },
   

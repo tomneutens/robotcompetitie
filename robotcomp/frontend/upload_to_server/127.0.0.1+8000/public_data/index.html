@@ -358,15 +358,71 @@
                 </li>
 	        </ul>
 	        <ul class="scroll_pane">
-                {% for match in matches %}
-                    {% if match.type == "next" %}
-                        {% if match.match %}
-                            {% include "_match.html" %}
-                        {% endif %}
-                    {% endif %}
-                {% empty %}
-                    <li class="pause">Pauze</li>
-                {% endfor %}
+                
+                    
+                
+                    
+                
+                    
+                        
+                            <li class="match table0">
+    <span class="table glyphicon-stop table_id0"></span>
+    <span class="match_info">
+    
+        <span class="player_in_matches player0">
+            <span class="name_in_matches"><span class="rbstatus robot1status0"></span>Sid</span>
+            <span class="teamnumber_in_matches">47</span>
+        </span>
+        <span class="player_in_matches player1">
+            <span class="name_in_matches"><span class="rbstatus robot2status0"></span>Trash</span>
+            <span class="teamnumber_in_matches">29</span>
+        </span>
+    </span>
+</li>
+
+                        
+                    
+                
+                    
+                        
+                            <li class="match table0">
+    <span class="table glyphicon-stop table_id0"></span>
+    <span class="match_info">
+    
+        <span class="player_in_matches player0">
+            <span class="name_in_matches"><span class="rbstatus robot1status0"></span>Belinda the Ninja Ballerina</span>
+            <span class="teamnumber_in_matches">38</span>
+        </span>
+        <span class="player_in_matches player1">
+            <span class="name_in_matches"><span class="rbstatus robot2status0"></span>Der Panzerwagen</span>
+            <span class="teamnumber_in_matches">45</span>
+        </span>
+    </span>
+</li>
+
+                        
+                    
+                
+                    
+                        
+                            <li class="match table0">
+    <span class="table glyphicon-stop table_id0"></span>
+    <span class="match_info">
+    
+        <span class="player_in_matches player0">
+            <span class="name_in_matches"><span class="rbstatus robot1status0"></span>TopMorb</span>
+            <span class="teamnumber_in_matches">46</span>
+        </span>
+        <span class="player_in_matches player1">
+            <span class="name_in_matches"><span class="rbstatus robot2status0"></span>Bavobot De Vierde</span>
+            <span class="teamnumber_in_matches">32</span>
+        </span>
+    </span>
+</li>
+
+                        
+                    
+                
             </ul>
         </div>
 	</div>
@@ -389,15 +445,19 @@
                 </li>
 	        </ul>
 	        <ul class="scroll_pane">
-                {% for match in matches %}
-                    {% if match.type == "current" %}
-                        {% if match.match %}
-                            {% include "_match.html" %}
-                        {% endif %}
-                    {% endif %}
-                {% empty %}
-                    <li class="pause">Pauze</li>
-                {% endfor %}
+                
+                    
+                
+                    
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
             </ul>
         </div>
 	</div>
@@ -420,15 +480,35 @@
                 </li>
 	        </ul>
 	        <ul class="scroll_pane played_matches">
-                {% for match in matches %}
-                    {% if match.type == "last" %}
-                        {% if match.match %}
-                            {% include "_match.html" %}
-                        {% endif %}
-                    {% endif %}
-                {% empty %}
-                    <li class="pause">Pauze</li>
-                {% endfor %}
+                
+                    
+                        
+                            <li class="match table0">
+    <span class="table glyphicon-stop table_id0"></span>
+    <span class="match_info">
+    
+        <span class="player_in_matches player0">
+            <span class="name_in_matches"><span class="rbstatus robot1status5"></span>Trash</span>
+            <span class="teamnumber_in_matches">29</span>
+        </span>
+        <span class="player_in_matches player1">
+            <span class="name_in_matches"><span class="rbstatus robot2status5"></span>kabouter plop</span>
+            <span class="teamnumber_in_matches">40</span>
+        </span>
+    </span>
+</li>
+
+                        
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
             </ul>
         </div>
 	</div>
@@ -445,17 +525,197 @@
 	            </li>
 	        </ul>
 	        <ol class="rectangle-list ranking">
-                {% for entry in ranking_entries %}
+                
                     <li class="player">
                       <span class="listitemcontainer">
-                        <span class="name">{{ entry.name }}</span>
+                        <span class="name">Olaf</span>
                         <span class="floatright">
-                            <span class="teamnumber">{{ entry.teamnumber }}</span>
-                            <span class="score">{{ entry.score }}</span>
+                            <span class="teamnumber">35</span>
+                            <span class="score">3</span>
                         </span>
                       </span>
                     </li>
-                {% endfor %}
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">Trash</span>
+                        <span class="floatright">
+                            <span class="teamnumber">29</span>
+                            <span class="score">1</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">kabouter plop</span>
+                        <span class="floatright">
+                            <span class="teamnumber">40</span>
+                            <span class="score">1</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">Rebel 4</span>
+                        <span class="floatright">
+                            <span class="teamnumber">24</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">salami-me-nutella-in-afrika</span>
+                        <span class="floatright">
+                            <span class="teamnumber">25</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">EV4</span>
+                        <span class="floatright">
+                            <span class="teamnumber">23</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">Unicorn123</span>
+                        <span class="floatright">
+                            <span class="teamnumber">30</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">clockwerk</span>
+                        <span class="floatright">
+                            <span class="teamnumber">33</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">AUDI</span>
+                        <span class="floatright">
+                            <span class="teamnumber">34</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">Belinda the Ninja Ballerina</span>
+                        <span class="floatright">
+                            <span class="teamnumber">38</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">Bavobot De Vierde</span>
+                        <span class="floatright">
+                            <span class="teamnumber">32</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">Sinex</span>
+                        <span class="floatright">
+                            <span class="teamnumber">43</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">Bertha</span>
+                        <span class="floatright">
+                            <span class="teamnumber">44</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">Der Panzerwagen</span>
+                        <span class="floatright">
+                            <span class="teamnumber">45</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">TopMorb</span>
+                        <span class="floatright">
+                            <span class="teamnumber">46</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">Sid</span>
+                        <span class="floatright">
+                            <span class="teamnumber">47</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">We kunnen dit later nog aanpassen.</span>
+                        <span class="floatright">
+                            <span class="teamnumber">51</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">De Reisduif</span>
+                        <span class="floatright">
+                            <span class="teamnumber">48</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
+                    <li class="player">
+                      <span class="listitemcontainer">
+                        <span class="name">JohanLittleRacer</span>
+                        <span class="floatright">
+                            <span class="teamnumber">49</span>
+                            <span class="score">0</span>
+                        </span>
+                      </span>
+                    </li>
+                
             </ol>
         </div>
 	</div>
@@ -463,10 +723,10 @@
 	
 
 	<div id="logo_banner">
-		<img id="ugent_logo" class=".logo" src="/frontend/ugent_logo.png"></img>
-		<img id="dwengo_logo" class=".logo" src="/frontend/dwengo_logo.png"></img>
-		<img id="dekimo_logo" class=".logo" src="/frontend/dekimo_logo.png"></img>
-		<img id="makerfaire_logo" class=".logo" src="/frontend/makerfaire_logo.png"></img>
+		<img id="ugent_logo" class=".logo" src="http://127.0.0.1:8000/frontend/ugent_logo.png"></img>
+		<img id="dwengo_logo" class=".logo" src="http://127.0.0.1:8000/frontend/dwengo_logo.png"></img>
+		<img id="dekimo_logo" class=".logo" src="http://127.0.0.1:8000/frontend/dekimo_logo.png"></img>
+		<img id="makerfaire_logo" class=".logo" src="http://127.0.0.1:8000/frontend/makerfaire_logo.png"></img>
 		<p id="copyright">&copy; 2019 Dwengo</p>
 	</div>
 	

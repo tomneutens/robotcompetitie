@@ -1,0 +1,66 @@
+<html>
+  <head>
+	<script type="text/javascript" src="jquery/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="settings.js"></script>
+    <script type="text/javascript" src="comm.js"></script>
+    <script type="text/javascript" src="ui.js"></script>
+    <script type="text/javascript" src="timer.js"></script>
+    <script type="text/javascript">
+        Frontend.communication.setRoundType("pause", 0, "");
+      </script>
+    
+    
+
+    <link rel="stylesheet" type="text/css" href="pause_0.css"></link>
+  </head>
+
+  <body class="pause">
+    <div class="sideshow_container">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/5.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/6.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/7.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/8.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/9.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/10.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/11.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/12.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/13.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/14.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/15.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/16.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/17.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/18.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/19.jpg">
+      <span class="helper"></span><img class="mySlides" src="/frontend/fotos/20.jpg">
+    </div>
+    <div class="pause_container">
+     <!-- <span class="pauze">Pauze</span>-->
+    </div>
+
+    <div id="logo_banner">
+        <span id="external_url">dwengo.live</span>
+        <img id="ugent_logo" class=".logo" src="/frontend/ugent_logo.png"></img>
+        <img id="dwengo_logo" class=".logo" src="/frontend/dwengo_logo.png"></img>
+        <img id="dekimo_logo" class=".logo" src="/frontend/dekimo_logo.png"></img>
+        <img id="makerfaire_logo" class=".logo" src="/frontend/makerfaire_logo.png"></img>
+      </div>
+
+      <script>
+          var slideIndex = 0;
+          carousel();
+    
+          function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+              x[i].style.display = "none"; 
+            }
+            slideIndex++;
+            if (slideIndex > x.length) {slideIndex = 1} 
+            x[slideIndex-1].style.display = "inline-block"; 
+            setTimeout(carousel, 5000); // Change image every 2 seconds
+          }
+    
+        </script>
+  </body>
+</html>
