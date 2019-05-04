@@ -7,12 +7,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-	<meta http-equiv="refresh" content="5">
+	<meta http-equiv="refresh" content="500">
 	<title>Robotcompetitie</title>
 	<style>
 	
 	    body {
 	        color: #3a3c78;
+			width: 100vw;
+    		margin: 0;
 	    }
 	    
 	    .floatright {
@@ -254,24 +256,39 @@
         @media screen and (max-device-width: 480px) and (orientation: portrait){
           /* some CSS here */
           .container {
-	        width: 100%;
+	        width: calc(100vw - 10px);
 	      }
+		  .teamnumber_in_matches {
+			  float:right;
+			  min-width: 20px;
+		  }
 	      .name_in_matches {
-	            width: 100px;
+			  float: right;
+	          width: 89px;
 	        }
 	      .player_in_matches{
-	        width: 131px;
+	        width: 120px;
 	      }
 	      .name {
-	        width: 100px;
+	        max-width: 70px;
+			min-width: 50px;
 	      }
+		  .match_info {
+			  position: absolute;
+		  }
+		  .teamnumber {
+			  width: 80px;
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+		  }
+
         }
         
         /* #### Mobile Phones #### */
-        @media screen and (max-device-width: 767px){
+        @media screen and (min-device-width: 479px) and (max-device-width: 767px){
           /* some CSS here */
           .container {
-	        width: 100%;
+	        width: calc(100vw - 10px);
 	      }
 	      .name_in_matches {
 	            width: 100px;
